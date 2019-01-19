@@ -1,0 +1,36 @@
+{
+  "name": "weather-api",
+  "description": "A simple weather API",
+  "engines": {
+    "node": "8.9.4"
+  },
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "jest src"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.2",
+    "express-session": "^1.15.6",
+    "mongo-in-memory":"0.0.5",
+    "morgan": "^1.9.0",
+    "request-promise": "4.2.2",
+    "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.0",
+    "jest": "23.6.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ],
+    "verbose": true,
+    "roots": [
+      "<rootDir>/src/"
+    ]
+  },
+  "license": "MIT"
+}
