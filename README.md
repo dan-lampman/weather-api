@@ -18,12 +18,10 @@ To retrieve weather for a given CSV list of cities
 
 ### Database
 
-To deliver an entire application without relying on a MongoDB installation, this solution uses [mongo-in-memory](https://www.npmjs.com/package/mongo-in-memory).
-This package has several limitations and as a result, this solution does not add a TTL on the `currentWeather` collection. Current weather conditions for a given city are not propery expired.
+Weather data is cached according to the third parameter passed to node e.g.,
+> `node src/server.js 30000`
 
-To add a TTL on a collection for a real MongoDB database using [MongoDB](https://mongodb.github.io/node-mongodb-native/):
-
->`db.currentWeather.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )`
+will result in MongoDB caching every 30000 milliseconds. The default value is 60000 milliseconds.
 
 ### Nginx
 

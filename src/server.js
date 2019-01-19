@@ -9,6 +9,7 @@ const openWeatherUri = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const mongoDBPort = 8000;
 const mongoDBName = 'currentWeather';
 const mongoServerInstance = new MongoInMemory(mongoDBPort);
+let cacheTimeMS = 60000;
 
 function checkMongoCache(city) {
     return new Promise((resolve, reject) => {
@@ -28,6 +29,11 @@ function checkMongoCache(city) {
     });
 };
 
+function roundMilliseconds(ms) {
+    var d = new Date();
+    return Math.floor(d.getTime()/ms);
+}
+
 app.get('/weather-api/cities/:cityList', async(req, res) => {
     const cities = req.params.cityList ? req.params.cityList.toString().split(',') : [];
     const weatherRequests = [];
@@ -42,7 +48,8 @@ app.get('/weather-api/cities/:cityList', async(req, res) => {
     for (let i = 0; i < cities.length; i++) {
         try {
             const city = cities[i];
-            const existingDoc = await checkMongoCache(city);
+            const timeKey = roundMilliseconds(cacheTimeMS);
+            const existingDoc = await checkMongoCache(`${city}-${timeKey}`);
 
             if (existingDoc !== null) {
                 response.push(existingDoc);
@@ -58,7 +65,8 @@ app.get('/weather-api/cities/:cityList', async(req, res) => {
     Promise.all(weatherRequests).then((weatherResponse) => {
         weatherResponse.forEach((rawCityWeather) => {
             const cityWeather = JSON.parse(rawCityWeather);
-            cityWeather._id = cityWeather.name.toString().toLowerCase();
+            const timeKey = roundMilliseconds(cacheTimeMS);
+            cityWeather._id = cityWeather.name.toString().toLowerCase() + '-' + timeKey;
             cityWeather.auditDate = (new Date).getTime();
 
             mongoServerInstance.addDocument(mongoDBName, 'cityWeather', cityWeather, (error, documentObjectAdded) => {
@@ -96,6 +104,13 @@ mongoServerInstance.start((error, config) => {
 });
 
 app.listen(port, () => {
+    process.argv.forEach(function (val, index) {
+        if (parseInt(val)) {
+            cacheTimeMS = val;
+            console.log('cacheTimeSeconds: ' + cacheTimeMS);
+        }
+      });
+
     console.log('weather-api listening on: ' + port);
 });
 
