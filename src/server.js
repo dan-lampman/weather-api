@@ -1,17 +1,14 @@
 const express = require('express');
 const app = express();
-const Status = require('./routes/status');
 const MongoInMemory = require('mongo-in-memory');
 const request = require('request-promise');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9000;
 const openWeatherKey = 'f8834164e9016e7faf70fff59ef53ccc';
 const openWeatherUri = 'http://api.openweathermap.org/data/2.5/weather?q=';
 const mongoDBPort = 8000;
 const mongoDBName = 'currentWeather';
 const mongoServerInstance = new MongoInMemory(mongoDBPort);
-
-console.log(mongoServerInstance);
 
 function checkMongoCache(city) {
     return new Promise((resolve, reject) => {
@@ -22,24 +19,9 @@ function checkMongoCache(city) {
             }
 
             if (document !== null) {
-                if ((new Date).getTime() - document.modifiedDate >= 5) {
-                    const myquery = { _id: city };
-                    mongoServerInstance.connections.currentWeather.remove(myquery, function(err, obj) {
-                        console.log(err);
-                        console.log(obj);
-
-                        if (err) {
-                            reject(err);
-                            return;
-                        }
-                        console.log(obj.result.n + " document(s) deleted");
-                        db.close();
-                    });
-                } else {
-                    console.log('document already exists in mongo: ' + city);
-                    resolve(document)
-                    return;
-                }
+                console.log('document already exists in mongo: ' + city);
+                resolve(document)
+                return;
             }
             resolve(null);
         });
@@ -86,7 +68,7 @@ app.get('/weather-api/cities/:cityList', async(req, res) => {
                     return;
                 }
 
-                console.log('added document to Mongo');
+                console.log('added document to Mongo with key: ' + cityWeather._id);
             });
 
             response.push(cityWeather);
