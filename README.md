@@ -18,7 +18,10 @@ To retrieve weather for a given CSV list of cities
 
 ### Database
 
-Weather data is cached according to the third parameter passed to node e.g.,
+Weather data is stored in MongoDB by city name and timestamp. E.g.,
+> toronto-25799033
+
+This caching timestamp is calculated according to the third parameter passed to node. E.g.,
 > `node src/server.js 30000`
 
 will result in MongoDB caching every 30000 milliseconds. The default value is 60000 milliseconds.
