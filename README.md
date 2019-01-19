@@ -12,7 +12,7 @@ $ npm start
 Weather API should now be running on [localhost:9000](http://localhost:9000/) with a virtual MongoDB.
 
 To retrieve weather for a given CSV list of cities
-- GET http://localhost:9000/weather-api/cities/toronto,oakville,london,new york
+- GET http://localhost:9000/weather-api/cities/toronto,oakville,london
 
 ## Documentation
 
