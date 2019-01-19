@@ -6,8 +6,7 @@
   },
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "test": "jest src"
+    "start": "node src/server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,18 +17,7 @@
     "sqlite3": "^4.0.0"
   },
   "devDependencies": {
-    "@types/express": "^4.11.0",
-    "jest": "23.6.0"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageReporters": [
-      "html"
-    ],
-    "verbose": true,
-    "roots": [
-      "<rootDir>/src/"
-    ]
+    "@types/express": "^4.11.0"
   },
   "license": "MIT"
 }
