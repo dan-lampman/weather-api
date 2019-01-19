@@ -43,6 +43,7 @@ app.get('/weather-api/cities/:cityList', async(req, res) => {
         res.status(404).send({
             message: 'Missing parameter: a minimum of two city names is required'
         })
+        return;
     }
 
     for (let i = 0; i < cities.length; i++) {
