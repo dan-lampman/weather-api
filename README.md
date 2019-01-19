@@ -1,6 +1,6 @@
-# Rhovepad API
+# Weather API
 
-A recommendation system for a social music player ecosystem.
+A simple weather API that uses virtual MongoDB to store data.
 
 ## Running Locally
 
@@ -9,68 +9,23 @@ $ npm install
 $ npm start
 ```
 
-Rhovepad-API should now be running on [localhost:3000](http://localhost:3000/) with an existing database of the provided music (music.JSON).
+Weather API should now be running on [localhost:9000](http://localhost:9000/) with a virtual MongoDB.
 
-To populate user listening and following relationships,
-- POST http://localhost:3000/rhovepad-api/init
-- This functionality has been purposefully moved to a single route so that the database can be updated during runtime without needing to restart the server.
+To retrieve weather for a given CSV list of cities
+- GET http://localhost:9000/weather-api/cities/toronto,oakville,london,new york
 
-## Running Tests
+## Documentation
 
-```sh
-$ npm test
-```
+### Database
 
-This will create a coverage report at `coverage/index.html`.
+To deliver an entire application without relying on a MongoDB installation, this solution uses [mongo-in-memory](https://www.npmjs.com/package/mongo-in-memory).
+This package has several limitations and as a result, this solution does not add a TTL on the `currentWeather` collection. Current weather conditions for a given city are not propery expired.
 
-# Documentation
+To add a TTL on a collection for a real MongoDB database using [MongoDB](https://mongodb.github.io/node-mongodb-native/):
 
+>`db.currentWeather.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )`
 
-## User Routes
+### Nginx
 
-User routes have been defined under `rhovepad-api/user/:userID` instead of using routes against the API root. This change allows for a more RESTful implementation.
+The Nginx configuration can be found in `/etc/nginx/conf.d/sysmon.confg`. This configuration will reverse proxy any http requests from localhost:9000 to exampledomain.ca.
 
-### Music Recommendations
-
-- GET `rhovepad-api/user/:userID/recommendations`
-- Other parameters: none
-- Returns a list of music IDs that the user has not listened to based first and second degree followers of the user. This is a curated list that does not included duplicates or songs the user has already listened to.
-
-### View All Users
-
-- GET `rhovepad-api/user/viewAll`
-- Other parameters: none
-- Returns a list of all users including their follower relationships and the IDs of music that they have already listened.
-
-### Follow
-
-- POST `rhovepad-api/user/follow`
-- Other parameters: body: `from` (string), `to` (string)
-- Adds `from` as a follower of `to`. If this relationship already exists, nothing is done and the API returns 200.
-
-### Listen
-
-- POST `rhovepad-api/user/listen`
-- Other parameters: body: `user` (string), `music` (string)
-- Adds `music` as a song that `user` has listened to. If this relationship already exists, nothing is done and the API returns 200.
-
-## Admin Routes
-
-### Init
-
-- POST `rhovepad-api/init`
-- Other parameters: none
-- Consumes `listen.JSON` and `follows.json` in order to populate user and music relationships.
-
-## Other Routes
-
-### Get Music
-
-- GET `rhovepad-api/music`
-- Returns list of music
-
-### Status
-
-- GET `rhovepad-api/status`
-- Other parameters: none
-- Returns server status
