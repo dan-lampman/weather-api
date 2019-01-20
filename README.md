@@ -17,6 +17,7 @@ To retrieve weather for a given CSV list of cities
 ## Documentation
 
 This API uses [openweathermap](https://openweathermap.org/) to generate current weather reports for a given city.
+Sample output can be found [here](https://github.com/dlampman/weather-api/blob/master/sample-output.json).
 
 ### Database
 
