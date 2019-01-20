@@ -1,6 +1,6 @@
 # Weather API
 
-A simple weather API that uses virtual MongoDB to store data.
+A simple weather API that uses a virtual MongoDB to store data.
 
 ## Running Locally
 
