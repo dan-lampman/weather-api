@@ -1,0 +1,185 @@
+[
+    {
+        "_id": "toronto-25799036",
+        "coord": {
+            "lon": -79.39,
+            "lat": 43.65
+        },
+        "weather": [
+            {
+                "id": 600,
+                "main": "Snow",
+                "description": "light snow",
+                "icon": "13n"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 260.17,
+            "pressure": 1019,
+            "humidity": 84,
+            "temp_min": 257.15,
+            "temp_max": 264.15
+        },
+        "visibility": 2414,
+        "wind": {
+            "speed": 6.2,
+            "deg": 30
+        },
+        "clouds": {
+            "all": 90
+        },
+        "dt": 1547940600,
+        "sys": {
+            "type": 1,
+            "id": 871,
+            "message": 0.0043,
+            "country": "CA",
+            "sunrise": 1547901905,
+            "sunset": 1547935945
+        },
+        "id": 6167865,
+        "name": "Toronto",
+        "cod": 200,
+        "auditDate": 1547942210230
+    },
+    {
+        "_id": "oakville-25799036",
+        "coord": {
+            "lon": -79.67,
+            "lat": 43.45
+        },
+        "weather": [
+            {
+                "id": 600,
+                "main": "Snow",
+                "description": "light snow",
+                "icon": "13n"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 260.89,
+            "pressure": 1015,
+            "humidity": 77,
+            "temp_min": 259.15,
+            "temp_max": 264.15
+        },
+        "visibility": 2414,
+        "wind": {
+            "speed": 4.6,
+            "deg": 40,
+            "gust": 8.2
+        },
+        "clouds": {
+            "all": 90
+        },
+        "dt": 1547940360,
+        "sys": {
+            "type": 1,
+            "id": 836,
+            "message": 0.0036,
+            "country": "CA",
+            "sunrise": 1547901938,
+            "sunset": 1547936047
+        },
+        "id": 6092122,
+        "name": "Oakville",
+        "cod": 200,
+        "auditDate": 1547942210231
+    },
+    {
+        "_id": "london-25799036",
+        "coord": {
+            "lon": -0.13,
+            "lat": 51.51
+        },
+        "weather": [
+            {
+                "id": 701,
+                "main": "Mist",
+                "description": "mist",
+                "icon": "50n"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 275.04,
+            "pressure": 1011,
+            "humidity": 95,
+            "temp_min": 273.15,
+            "temp_max": 276.15
+        },
+        "visibility": 10000,
+        "wind": {
+            "speed": 2.1,
+            "deg": 70
+        },
+        "clouds": {
+            "all": 24
+        },
+        "dt": 1547940000,
+        "sys": {
+            "type": 1,
+            "id": 1414,
+            "message": 0.004,
+            "country": "GB",
+            "sunrise": 1547884500,
+            "sunset": 1547915304
+        },
+        "id": 2643743,
+        "name": "London",
+        "cod": 200,
+        "auditDate": 1547942210231
+    },
+    {
+        "_id": "new york-25799036",
+        "coord": {
+            "lon": -73.99,
+            "lat": 40.73
+        },
+        "weather": [
+            {
+                "id": 300,
+                "main": "Drizzle",
+                "description": "light intensity drizzle",
+                "icon": "09n"
+            },
+            {
+                "id": 500,
+                "main": "Rain",
+                "description": "light rain",
+                "icon": "10n"
+            }
+        ],
+        "base": "stations",
+        "main": {
+            "temp": 275.58,
+            "pressure": 1019,
+            "humidity": 73,
+            "temp_min": 273.75,
+            "temp_max": 277.05
+        },
+        "visibility": 16093,
+        "wind": {
+            "speed": 3.82,
+            "deg": 102.009
+        },
+        "clouds": {
+            "all": 90
+        },
+        "dt": 1547939700,
+        "sys": {
+            "type": 1,
+            "id": 4686,
+            "message": 0.0057,
+            "country": "US",
+            "sunrise": 1547900131,
+            "sunset": 1547935125
+        },
+        "id": 5128581,
+        "name": "New York",
+        "cod": 200,
+        "auditDate": 1547942210231
+    }
+]
