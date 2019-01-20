@@ -16,6 +16,8 @@ To retrieve weather for a given CSV list of cities
 
 ## Documentation
 
+This API uses [openweathermap](https://openweathermap.org/) to generate current weather reports for a given city.
+
 ### Database
 
 Weather data is stored in MongoDB by city name and timestamp. E.g.,
