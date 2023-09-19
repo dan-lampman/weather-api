@@ -8,17 +8,12 @@ const MongoInMemory = require('mongo-in-memory');
 const request = require('request-promise');
 
 const port = process.env.PORT || 3000;
-const secretKey = 'zKFcLgp9qMkrDRQB';
 const accuApiKey = '0v4SufzOkQH7TwbzksUyQIO0EcXBpAYJ';
 const accuLocationUri = 'http://dataservice.accuweather.com/locations/v1/search?q=';
 const accuWeatherUri = 'http://dataservice.accuweather.com/currentconditions/v1/';
 const mongoDBPort = 8000;
 const mongoDBName = 'currentWeather';
 const mongoServerInstance = new MongoInMemory(mongoDBPort);
-
-// routes
-// app.use('/weather-api/status', Status);
-// app.use('/weather-api/', Routes, mongod);
 
 app.get('/weather-api/cities/:cityList', (req, res) => {
     const cities = req.params.cityList ? req.params.cityList.toString().split(',') : [];
